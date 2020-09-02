@@ -1,8 +1,10 @@
 qualysapi
 =========
+[![Build Status](https://travis-ci.com/paragbaxi/qualysapi.svg?branch=master)](https://travis-ci.com/paragbaxi/qualysapi)
+[![Coverage Status](https://coveralls.io/repos/github/paragbaxi/qualysapi/badge.svg?branch=master)](https://coveralls.io/github/paragbaxi/qualysapi?branch=master)
 
-Python package, qualysapi, that makes calling any QualysGuard API very simple. QualysGuard API versions v1, v2, & WAS & AM (asset management) are all supported.
- 
+Python package, qualysapi, that makes calling any Qualys API very simple. Qualys API versions v1, v2, & WAS & AM (asset management) are all supported.
+
 My focus was making the API super easy to use. The only parameters the user needs to provide is the call, and data (optional). It automates the following:
 * Automatically identifies API version through the call requested.
 * Automatically identifies url from the above step.
@@ -12,6 +14,15 @@ Usage
 =====
 
 Check out the example scripts in the [/examples directory](https://github.com/paragbaxi/qualysapi/blob/master/examples/).
+
+Connect
+-------
+There are currenty three methods of connecting to Qualys APIs
+
+* `qualysapi.connect()` will prompt the user for credentials at runtime.
+* `qualysapi.connect('/path/to/config.ini')` will parse the config file for credentials (see below).
+* `qualysapi.connect(username='username', password='password')` will use the provided credentials.
+
 
 Example
 -------
@@ -23,7 +34,7 @@ Sample example below.
 >>> import qualysapi
 >>> a = qualysapi.connect()
 QualysGuard Username: my_username
-QualysGuard Password: 
+QualysGuard Password:
 >>> print a.request('about.php')
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE ABOUT SYSTEM "https://qualysapi.qualys.com/about.dtd">
@@ -34,7 +45,7 @@ QualysGuard Password:
   <VULNSIGS-VERSION>2.2.475-2</VULNSIGS-VERSION>
 </ABOUT>
 <!-- Generated for username="my_username" date="2013-07-03T10:31:57Z" -->
-<!-- CONFIDENTIAL AND PROPRIETARY INFORMATION. Qualys provides the QualysGuard Service "As Is," without any warranty of any kind. Qualys makes no warranty that the information contained in this report is complete or error-free. Copyright 2013, Qualys, Inc. //--> 
+<!-- CONFIDENTIAL AND PROPRIETARY INFORMATION. Qualys provides the QualysGuard Service "As Is," without any warranty of any kind. Qualys makes no warranty that the information contained in this report is complete or error-free. Copyright 2013, Qualys, Inc. //-->
 ```
 
 Installation
@@ -52,8 +63,6 @@ Requirements
 
 * requests (http://docs.python-requests.org)
 * lxml (http://lxml.de/)
-
-Tested successfully on Python 2.7.
 
 Configuration
 =============
